@@ -1,0 +1,7 @@
+"name": "My Music Player",
+  "short_name": "My Player",
+  "start_url": "./Index.html",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#1db954"
+}
