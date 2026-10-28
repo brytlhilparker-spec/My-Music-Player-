@@ -1,0 +1,68 @@
+DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1db954">
+  <title>My Music Player</title>
+  <link rel="stylesheet" href="Style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+  <aside class="sidebar">
+    <div class="profile">
+      <div class="avatar"></div>
+      <div>
+        <strong>My Profile</strong>
+        <p>Music Lover</p>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header>
+      <p class="welcome">WELCOME BACK</p>
+      <h1>Your Music, Your Mood.</h1>
+      <p class="description">
+        Listen to the songs you love.
+      </p>
+    </header>
+
+    <section class="music-card">
+      <div class="album-art">
+        <span>♪</span>
+      </div>
+
+      <h2 id="song-title">Spirit Chant</h2>
+      <p id="artist-name">Theophilus Sunday</p>
+
+      <div class="progress">
+        <div class="progress-line"></div>
+      </div>
+
+      <div class="time">
+        <span>0:00</span>
+        <span>3:30</span>
+      </div>
+
+      <div class="controls">
+        <button aria-label="Previous song">|◀</button>
+        <button class="play" aria-label="Play song">▶</button>
+        <button aria-label="Next song">▶|</button>
+      </div>
+
+      <p class="note">Your music player is ready!</p>
+    </section>
+  </main>
+
+  <audio id="audio"></audio>
+
+  <script src="Script.js"></script>
+</body>
+</html>
+  <audio id="audio"></audio>
+
+  <script src="Script.js"></script>
+</body>
+</html>
