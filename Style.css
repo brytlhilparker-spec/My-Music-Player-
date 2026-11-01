@@ -1,209 +1,793 @@
-* { 
+
+* {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+}
+
+:root {
+  color-scheme: dark;
+  --background: #0c0c14;
+  --card: #171725;
+  --card-light: #222237;
+  --accent: #a78bfa;
+  --text: #f7f5ff;
+  --muted: #a5a3b8;
 }
 
 body {
-  background: #07110c;
-  color: white;
-  font-family: Arial, sans-serif;
+  margin: 0;
   min-height: 100vh;
-  padding: 15px;
+  background:
+    radial-gradient(ellipse at top, #292044 0, transparent 48%),
+    var(--background);
+  color: var(--text);
+  font-family: system-ui, Arial, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
 }
 
 .app {
-  display: grid;
-  grid-template-columns: 210px 1fr;
-  gap: 15px;
-  max-width: 1100px;
-  margin: auto;
-  min-height: 90vh;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 22px 16px 40px;
 }
 
-.sidebar,
-.main-content {
-  background: #101c15;
-  border: 1px solid #244d35;
-  border-radius: 18px;
-  padding: 22px;
-}
-
-.logo {
-  color: #1ed760;
-  font-size: 27px;
-  margin-bottom: 35px;
-}
-
-.menu-heading,
-.welcome {
-  color: #1ed760;
-  font-size: 12px;
-  letter-spacing: 2px;
-  margin-bottom: 15px;
-}
-
-nav a {
-  display: block;
-  color: #c7d2ca;
-  text-decoration: none;
-  padding: 13px 10px;
-  margin-bottom: 6px;
-  border-radius: 8px;
-}
-
-nav a:hover,
-nav a.active {
-  background: #203b29;
-  color: #1ed760;
-}
-
-.profile {
+.topbar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 40px;
-  border-top: 1px solid #294532;
-  padding-top: 20px;
+  gap: 13px;
+  margin-bottom: 28px;
 }
 
-.avatar {
-  background: #1b5430;
-  color: #1ed760;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
+.brand-icon {
+  width: 50px;
+  height: 50px;
   display: grid;
   place-items: center;
-}
-
-.profile p,
-.artist,
-.description,
-.note {
-  color: #9eafa3;
-  margin-top: 7px;
-  font-size: 14px;
-}
-
-.main-content header {
-  margin-bottom: 25px;
-}
-
-.main-content h1 {
-  font-size: clamp(24px, 5vw, 38px);
-  margin-bottom: 10px;
-}
-
-.music-card {
-  background: #0b150f;
-  border: 1px solid #245235;
   border-radius: 16px;
-  padding: 22px 15px;
-  text-align: center;
-  max-width: 430px;
-  margin: auto;
-}
-
-.album-art {
-  width: min(100%, 240px);
-  aspect-ratio: 1;
-  margin: 0 auto 22px;
-  background: linear-gradient(135deg, #1ed760, #123a23, #07110c);
-  border: 1px solid #398b50;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 0 22px #1ed76030;
-}
-
-.album-art span {
-  font-size: 90px;
+  background: linear-gradient(135deg, #a78bfa, #ec4899);
   color: white;
+  font-size: 30px;
 }
 
-.music-card h2 {
+.topbar h1 {
+  margin: 0;
   font-size: 22px;
 }
 
-.progress {
-  height: 5px;
-  background: #344239;
-  border-radius: 10px;
-  margin-top: 25px;
-  overflow: hidden;
+.topbar p,
+.section-description {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
 }
 
-.progress-line {
-  height: 100%;
-  width: 35%;
-  background: #1ed760;
-  border-radius: 10px;
+.music-card,
+.library,
+.favorites {
+  background: rgba(23, 23, 37, 0.94);
+  border: 1px solid #302d45;
+  border-radius: 25px;
+  padding: 22px 18px;
+  margin-bottom: 20px;
+}
+
+.music-card {
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.album-art {
+  width: min(68vw, 280px);
+  aspect-ratio: 1;
+  margin: 22px auto;
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 30% 25%, #f0abfc, transparent 30%),
+    linear-gradient(145deg, #6d28d9, #312e81 55%, #111827);
+  box-shadow: 0 16px 40px #0007;
+}
+
+.album-art span {
+  font-size: 100px;
+  color: #ffffffdf;
+}
+
+#song-title {
+  font-size: 25px;
+  margin: 14px 0 5px;
+  overflow-wrap: anywhere;
+}
+
+#artist-name {
+  color: var(--muted);
+  margin: 0;
+}
+
+.progress {
+  margin-top: 26px;
+}
+
+#progress-bar {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
 }
 
 .time {
   display: flex;
   justify-content: space-between;
-  color: #9eafa3;
+  color: var(--muted);
   font-size: 12px;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 .controls {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 25px;
-  margin: 25px 0;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
 }
 
 .controls button {
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 23px;
-  padding: 8px;
+  min-width: 40px;
+  min-height: 44px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--card-light);
+  color: var(--text);
+  font-size: 17px;
+  cursor: pointer;
 }
 
-.controls .play {
-  background: #1ed760;
-  color: #07110c;
-  width: 55px;
-  height: 55px;
+.controls button.play {
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
-  font-size: 23px;
+  background: linear-gradient(135deg, #a78bfa, #ec4899);
+  color: white;
+  font-size: 25px;
+}
+
+.controls button.active {
+  color: var(--accent);
+  outline: 1px solid var(--accent);
 }
 
 .note {
+  min-height: 18px;
+  margin: 20px 0 0;
+  color: var(--muted);
   font-size: 12px;
 }
 
-@media (max-width: 600px) {
+.library h2,
+.favorites h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+#song-list,
+#favorites-list {
+  margin-top: 16px;
+}
+
+.song-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 8px;
+  border-bottom: 1px solid #302d45;
+}
+
+.song-row:last-child {
+  border-bottom: 0;
+}
+
+.song-select {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.song-select strong,
+.song-select span {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.song-select span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.song-select.selected strong {
+  color: var(--accent);
+}
+
+.favorite-button {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: 13px;
+  background: var(--card-light);
+  color: var(--muted);
+  font-size: 21px;
+  cursor: pointer;
+}
+
+.favorite-button.is-favorite {
+  color: #fb7185;
+}
+
+@media (max-width: 380px) {
   .app {
-    grid-template-columns: 1fr;
+    padding: 16px 10px 30px;
   }
 
-  .sidebar,
-  .main-content {
-    padding: 16px;
+  .music-card,
+  .library,
+  .favorites {
+    padding: 18px 12px;
   }
 
-  .logo {
-    margin-bottom: 18px;
+  .controls {
+    gap: 6px;
   }
 
-  nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-  }
-
-  nav a {
-    margin: 0;
-    font-size: 14px;
-  }
-
-  .profile {
-    margin-top: 20px;
+  .controls button {
+    min-width: 35px;
   }
 }
+.playlist-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+#search-songs {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #35354b;
+  border-radius: 12px;
+  background: #191927;
+  color: white;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+#volume-control {
+  width: 100%;
+  accent-color: #a78bfa;
+}
+
+.playlist-tools label {
+  color: #dedcf0;
+  font-size: 14px;
+}
+
+#playlist-count {
+  margin: 0;
+}
+
+/* Modern purple sign-in screen */
+.login-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  background:
+    radial-gradient(
+      circle at top,
+      #35205f 0%,
+      #171326 42%,
+      #0b0b12 100%
+    );
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 30px 24px;
+  box-sizing: border-box;
+  text-align: center;
+  color: #ffffff;
+  background: rgba(24, 22, 39, 0.96);
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.login-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #a855f7, #6d28d9);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+  font-size: 42px;
+}
+
+.login-tagline {
+  margin: 0 0 10px;
+  color: #c4b5fd;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.login-card h1 {
+  margin: 0 0 10px;
+  font-size: 29px;
+}
+
+.login-description {
+  margin: 0 0 26px;
+  color: #b8b4c9;
+  font-size: 14px;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+#login-form > label {
+  color: #e6e0f5;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#login-form > input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border: 1px solid #403650;
+  border-radius: 12px;
+  outline: none;
+  background: #12111c;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+#login-form > input:focus {
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.12);
+}
+
+.show-password {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0 8px;
+  color: #c4bfd4;
+  font-size: 13px;
+}
+
+.show-password input {
+  accent-color: #a855f7;
+}
+
+.login-button {
+  min-height: 50px;
+  border: none;
+  border-radius: 13px;
+  background: linear-gradient(90deg, #9333ea, #7c3aed);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.25);
+}
+
+.login-button:active {
+  transform: scale(0.98);
+}
+
+.login-message {
+  margin: 0;
+  color: #c4b5fd;
+  font-size: 13px;
+  text-align: center;
+}
+
+.login-footer {
+  margin: 24px 0 0;
+  color: #8f89a5;
+  font-size: 12px;
+}
+
+/* Profile area */
+.profile-area {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin: 12px 16px;
+  z-index: 100;
+}
+
+/* Profile button */
+.profile-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border: 1px solid #594477;
+  border-radius: 25px;
+  background: #29203f;
+  color: #ffffff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Profile icon */
+.profile-icon {
+  font-size: 20px;
+}
+
+/* Dropdown menu */
+.profile-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 210px;
+  padding: 12px;
+  background: #211832;
+  border: 1px solid #594477;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Menu email */
+#profile-email {
+  margin: 4px 0 12px;
+  padding-bottom: 10px;
+  color: #d8b4fe;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid #594477;
+}
+
+/* Settings and Sign Out buttons */
+.profile-menu button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border: none;
+  border-radius: 8px;
+  background: #39294f;
+  color: white;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.profile-menu button:active,
+.profile-button:active {
+  background: #6d28d9;
+}
+
+/* Settings panel */
+.settings-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 40px);
+  max-width: 360px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 22px;
+  background: #211832;
+  color: #ffffff;
+  border: 1px solid #594477;
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+}
+
+.settings-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.settings-heading h2 {
+  margin: 0;
+  color: #d8b4fe;
+}
+
+#close-settings {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: #39294f;
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.settings-panel label {
+  display: block;
+  margin: 16px 0 8px;
+  font-size: 14px;
+}
+
+#theme-select,
+#settings-volume {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#theme-select {
+  padding: 12px;
+  border: 1px solid #594477;
+  border-radius: 10px;
+  background: #39294f;
+  color: #ffffff;
+  font-size: 15px;
+}
+
+#settings-volume {
+  accent-color: #a855f7;
+}
+
+.settings-panel p {
+  color: #d8b4fe;
+  font-size: 14px;
+}
+
+/* Light theme */
+body.light-theme {
+  background: #f3f0fa;
+  color: #241b33;
+}
+
+body.light-theme .app {
+  background: #f3f0fa;
+  color: #241b33;
+}
+
+body.light-theme .app h1,
+body.light-theme .app h2,
+body.light-theme .app h3,
+body.light-theme .app p,
+body.light-theme .app label {
+  color: #241b33;
+}
+
+body.light-theme .profile-button {
+  background: #ffffff;
+  color: #241b33;
+  border-color: #c9b8e6;
+}
+
+body.light-theme .profile-menu,
+body.light-theme .settings-panel {
+  background: #ffffff;
+  color: #241b33;
+  border-color: #c9b8e6;
+}
+
+body.light-theme .profile-menu button,
+body.light-theme #close-settings {
+  background: #eee6fa;
+  color: #241b33;
+}
+
+body.light-theme #profile-email,
+body.light-theme .settings-panel p,
+body.light-theme .settings-heading h2 {
+  color: #6d28d9;
+}
+
+body.light-theme #theme-select {
+  background: #f7f3fc;
+  color: #241b33;
+  border-color: #c9b8e6;
+}
+
+.settings-panel[hidden],
+.profile-menu[hidden] {
+  display: none !important;
+}
+
+/* Profile picture */
+.profile-picture-area {
+  text-align: center;
+  padding: 12px 0 18px;
+}
+
+.profile-avatar,
+#profile-picture {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #a855f7;
+}
+
+.profile-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #39294f;
+  font-size: 38px;
+}
+
+.picture-upload-button {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: #39294f;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* Sleep timer and playback settings */
+.settings-panel hr {
+  border: 0;
+  border-top: 1px solid #594477;
+  margin: 20px 0;
+}
+
+.settings-panel h3 {
+  margin: 12px 0;
+  color: #d8b4fe;
+  font-size: 16px;
+}
+
+#sleep-timer-select,
+#playback-mode {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px;
+  margin: 8px 0 12px;
+  border: 1px solid #594477;
+  border-radius: 9px;
+  background: #39294f;
+  color: white;
+}
+
+#cancel-sleep-timer {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #8b5cf6;
+  border-radius: 9px;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+#sleep-timer-status {
+  overflow-wrap: anywhere;
+}
+
+/* Fix Settings panel layout */
+.settings-panel {
+  display: block;
+  width: calc(100% - 32px);
+  max-width: 380px;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.settings-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.settings-heading h2 {
+  flex: 1;
+}
+
+.settings-panel label {
+  display: block;
+  width: 100%;
+  margin: 14px 0 8px;
+}
+
+.settings-panel select,
+.settings-panel input[type="range"] {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.settings-panel #cancel-sleep-timer {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.settings-panel h3,
+.settings-panel p {
+  overflow-wrap: anywhere;
+}
+
+/* Fix the Settings close button */
+.settings-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.settings-heading h2 {
+  flex: 1;
+}
+
+#close-settings {
+  flex: 0 0 42px;
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+/* Refine Settings panel on phones */
+.settings-panel {
+  width: calc(100% - 48px);
+  max-width: 340px;
+  max-height: 72vh;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.settings-panel h3 {
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
+
+.settings-panel hr {
+  margin: 12px 0;
+}
+
+.settings-panel select {
+  padding: 10px;
+}
+
