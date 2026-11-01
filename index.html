@@ -1,68 +1,258 @@
-DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1db954">
+  <meta name="theme-color" content="#10101b">
   <title>My Music Player</title>
   <link rel="stylesheet" href="Style.css">
-  <link rel="manifest" href="manifest.json">
 </head>
-
 <body>
-  <aside class="sidebar">
-    <div class="profile">
-      <div class="avatar"></div>
-      <div>
-        <strong>My Profile</strong>
-        <p>Music Lover</p>
-      </div>
-    </div>
-  </aside>
+  <section id="login-screen" class="login-screen">
+  <div class="login-card">
 
-  <main class="main-content">
-    <header>
-      <p class="welcome">WELCOME BACK</p>
-      <h1>Your Music, Your Mood.</h1>
-      <p class="description">
-        Listen to the songs you love.
-      </p>
+    <div class="login-logo">♫</div>
+
+    <p class="login-tagline">YOUR MUSIC, YOUR MOOD</p>
+
+    <h1>Welcome Back</h1>
+    <p class="login-description">
+      Sign in to enjoy your music.
+    </p>
+
+    
+<form id="login-form">
+  <label for="login-email">Email address</label>
+  <input type="email" id="login-email" placeholder="you@example.com" autocomplete="username" required>
+
+  <label for="login-password">Password</label>
+  <input type="password" id="login-password" placeholder="Enter your password" autocomplete="current-password" required>
+
+  <label class="show-password">
+    <input type="checkbox" id="show-password">
+    Show password
+  </label>
+
+  <button type="submit" class="login-button">Sign In</button>
+
+  <button type="button" id="create-account-button" class="login-button">Create Account</button>
+
+  <button type="button" id="google-signin-button" class="login-button">Continue with Google</button>
+
+  <p id="login-message" class="login-message"></p>
+</form>
+
+    <p class="login-footer">
+      Made for music lovers 💜
+    </p>
+
+  </div>
+  </section>
+  <div class="app">
+    <div class="profile-area">
+  <button id="profile-button" class="profile-button" type="button">
+    <span class="profile-icon">👤</span>
+    <span>Profile</span>
+    <span>⌄</span>
+  </button>
+
+  <div id="profile-menu" class="profile-menu" hidden>
+    
+<div class="profile-picture-area">
+  <img
+    id="profile-picture"
+    src=""
+    alt="Profile picture"
+    hidden
+  >
+  <div id="profile-avatar" class="profile-avatar">👤</div>
+
+  <label for="profile-picture-input" class="picture-upload-button">
+    Change picture
+  </label>
+  <input
+    type="file"
+    id="profile-picture-input"
+    accept="image/*"
+    hidden
+  >
+</div>
+
+    <p id="profile-email">Not signed in</p>
+    <button id="settings-button" type="button">Settings</button>
+    <button id="logout-button" type="button">Sign Out</button>
+    
+<div id="settings-panel" class="settings-panel" hidden>
+  <div class="settings-heading">
+    <h2>Settings</h2>
+    <button id="close-settings" type="button">✕</button>
+  </div>    
+<hr>
+
+<h3>Sleep Timer</h3>
+<p>Stop music automatically after:</p>
+
+<select id="sleep-timer-select">
+  <option value="0">Off</option>
+  <option value="5">5 minutes</option>
+  <option value="10">10 minutes</option>
+  <option value="15">15 minutes</option>
+  <option value="30">30 minutes</option>
+  <option value="45">45 minutes</option>
+  <option value="60">60 minutes</option>
+</select>
+
+<p id="sleep-timer-status">Sleep timer is off.</p>
+<button id="cancel-sleep-timer" type="button">
+  Cancel Timer
+</button>
+
+<hr>
+
+<h3>Playback Settings</h3>
+<label for="playback-mode">When a song finishes</label>
+<select id="playback-mode">
+  <option value="continue">Continue playlist</option>
+  <option value="repeat-song">Repeat current song</option>
+  <option value="stop">Stop playback</option>
+</select>
+
+  <label for="theme-select">App Theme</label>
+  <select id="theme-select">
+    <option value="dark">Dark Purple</option>
+    <option value="light">Light</option>
+  </select>
+
+  <label for="settings-volume">Music Volume</label>
+  <input
+    type="range"
+    id="settings-volume"
+    min="0"
+    max="100"
+    value="80"
+  />
+  <p>Volume: <span id="settings-volume-value">80%</span></p>
+</div>
+
+  </div>
+    </div>
+    <header class="topbar">
+      <div class="brand-icon">♫</div>
+      <div>
+        <h1>My Music Test </h1>
+        <p>Your music, your mood.</p>
+      </div>
     </header>
 
-    <section class="music-card">
-      <div class="album-art">
-        <span>♪</span>
-      </div>
+    <main>
+      <section class="music-card">
+        <p class="eyebrow">NOW PLAYING</p>
 
-      <h2 id="song-title">Spirit Chant</h2>
-      <p id="artist-name">Theophilus Sunday</p>
+        <div class="album-art" id="album-art">
+          <span>♫</span>
+        </div>
 
-      <div class="progress">
-        <div class="progress-line"></div>
-      </div>
+        <h2 id="song-title">Spirit Chant</h2>
+        <p id="artist-name">Theophilus Sunday</p>
 
-      <div class="time">
-        <span>0:00</span>
-        <span>3:30</span>
-      </div>
+        <div class="progress">
+          <input id="progress-bar" type="range"
+            min="0" max="100" value="0"
+            aria-label="Song progress">
+        </div>
 
-      <div class="controls">
-        <button aria-label="Previous song">|◀</button>
-        <button class="play" aria-label="Play song">▶</button>
-        <button aria-label="Next song">▶|</button>
-      </div>
+        <div class="time">
+          <span id="current-time">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
 
-      <p class="note">Your music player is ready!</p>
-    </section>
-  </main>
+        <div class="controls">
+          <button id="shuffle-button" aria-label="Shuffle"
+            title="Shuffle">🔀</button>
+          <button id="previous-button" aria-label="Previous song">|◀</button>
+          <button class="play" aria-label="Play song">▶</button>
+          <button id="next-button" aria-label="Next song">▶|</button>
+          <button id="repeat-button" aria-label="Repeat"
+            title="Repeat">🔁</button>
+        </div>
 
-  <audio id="audio"></audio>
+        <p id="play-status" class="note">Choose a song to begin</p>
+      </section>
+        <div class="playlist-tools">
+  <input
+    type="search"
+    id="search-songs"
+    placeholder="Search songs or artists..."
+    aria-label="Search songs or artists"
+  >
 
-  <script src="Script.js"></script>
-</body>
-</html>
-  <audio id="audio"></audio>
+  <label for="volume-control">
+    Volume <span id="volume-value">80%</span>
+  </label>
 
-  <script src="Script.js"></script>
+  <input
+    type="range"
+    id="volume-control"
+    min="0"
+    max="100"
+    value="80"
+    aria-label="Volume"
+  >
+
+  <p id="playlist-count" class="section-description">
+    5 songs
+  </p>
+</div>
+
+<div id="song-list"></div>
+      <section class="library">
+        <h2>My Library</h2>
+        <p class="section-description">Your five offline songs</p>
+        <div id="song-list"></div>
+      </section>
+
+      <section class="favorites">
+        <h2>♥ Favorites</h2>
+        <div id="favorites-list">
+          <p class="section-description">
+            Your favorite songs will appear here.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <audio id="audio" preload="metadata"></audio>
+  </div>
+
+  
+<script type="module">
+  import {
+    auth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    GoogleAuthProvider,
+    signInWithPopup
+  } from "./firebase-config.js";
+
+  window.firebaseAuth = {
+    auth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    GoogleAuthProvider,
+    signInWithPopup
+  };
+
+  document.getElementById("login-message").textContent =
+    "Firebase connected successfully!";
+</script>
+
+  
+<script src="Script.js"></script>
+
 </body>
 </html>
