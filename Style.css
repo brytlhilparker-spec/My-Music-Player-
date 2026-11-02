@@ -791,3 +791,90 @@ body.light-theme #theme-select {
   padding: 10px;
 }
 
+
+/* Compact registration form for mobile screens */
+#registration-screen {
+  padding: 14px;
+}
+
+#registration-screen .login-card {
+  width: 100%;
+  max-width: 360px;
+  padding: 22px 18px;
+}
+
+#registration-screen .login-logo {
+  width: 58px;
+  height: 58px;
+  margin-bottom: 12px;
+  font-size: 34px;
+}
+
+#registration-screen .login-card h1 {
+  font-size: 25px;
+  margin-bottom: 8px;
+}
+
+#registration-screen .login-description {
+  margin-bottom: 16px;
+}
+
+#registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+  text-align: left;
+}
+
+#registration-form > label {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  color: #e6e0f5;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+#registration-form > input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 0 11px;
+  box-sizing: border-box;
+  border: 1px solid #403650;
+  border-radius: 10px;
+  background: #12111c;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+#registration-form > input:focus {
+  outline: none;
+  border-color: #a78bfa;
+}
+
+#registration-form > .login-button {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 14px;
+}
+
+#registration-screen .login-footer {
+  margin-top: 14px;
+}
+
+@media (max-width: 360px) {
+  #registration-screen .login-card {
+    padding: 18px 14px;
+  }
+
+  #registration-screen .login-card h1 {
+    font-size: 23px;
+  }
+}
+
