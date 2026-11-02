@@ -1,3 +1,18 @@
+
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
+
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
+} from "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js";
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyAH-CwX4d_mcayxAFvFUFE9bLkc2iIMiEs",
   authDomain: "my-music-player-c204d.firebaseapp.com",
