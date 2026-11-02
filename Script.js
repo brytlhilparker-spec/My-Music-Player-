@@ -550,8 +550,6 @@ backToSignIn.addEventListener("click", function () {
   loginScreen.style.display = "flex";
 });
 
-  }
-});
 // Always show the sign-in screen when the app opens
 loginScreen.style.display = "flex";
 // Sign out and return to the sign-in screen
