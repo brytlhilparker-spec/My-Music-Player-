@@ -531,6 +531,49 @@ loginForm.addEventListener("submit", async function (event) {
   }
 });
 
+/* Firebase account creation */
+const createAccountButton = document.getElementById("create-account-button");
+
+createAccountButton.addEventListener("click", async function () {
+  const email = loginEmail.value.trim();
+  const password = loginPassword.value;
+
+  if (!email || !password) {
+    loginMessage.textContent = "Enter your email and password first.";
+    return;
+  }
+
+  if (!window.firebaseAuth) {
+    loginMessage.textContent = "Firebase is not ready. Refresh and try again.";
+    return;
+  }
+
+  loginMessage.textContent = "Creating your account...";
+
+  try {
+    const result = await window.firebaseAuth.createUserWithEmailAndPassword(
+      window.firebaseAuth.auth,
+      email,
+      password
+    );
+
+    profileEmail.textContent = result.user.email || email;
+    loginMessage.textContent = "Account created successfully!";
+    loginScreen.style.display = "none";
+  } catch (error) {
+    if (error.code === "auth/email-already-in-use") {
+      loginMessage.textContent = "This email already has an account. Please sign in.";
+    } else if (error.code === "auth/invalid-email") {
+      loginMessage.textContent = "Please enter a valid email address.";
+    } else if (error.code === "auth/weak-password") {
+      loginMessage.textContent = "Choose a stronger password of at least 6 characters.";
+    } else if (error.code === "auth/network-request-failed") {
+      loginMessage.textContent = "Check your internet connection.";
+    } else {
+      loginMessage.textContent = "Account creation failed: " + error.message;
+    }
+  }
+});
 // Always show the sign-in screen when the app opens
 loginScreen.style.display = "flex";
 // Sign out and return to the sign-in screen
