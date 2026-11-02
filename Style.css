@@ -878,3 +878,37 @@ body.light-theme #theme-select {
   }
 }
 
+
+/* Final fix for registration field alignment */
+#registration-screen #registration-form {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  text-align: left !important;
+  gap: 8px !important;
+}
+
+#registration-screen #registration-form label {
+  position: static !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 4px 0 0 !important;
+  float: none !important;
+  box-sizing: border-box !important;
+}
+
+#registration-screen #registration-form input {
+  position: static !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  float: none !important;
+  box-sizing: border-box !important;
+}
+
+#registration-screen #registration-form button {
+  width: 100% !important;
+  margin: 5px 0 0 !important;
+  box-sizing: border-box !important;
+}
