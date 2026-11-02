@@ -550,6 +550,82 @@ backToSignIn.addEventListener("click", function () {
   loginScreen.style.display = "flex";
 });
 
+
+/* Firebase registration */
+const registrationForm =
+  document.getElementById("registration-form");
+const registrationMessage =
+  document.getElementById("registration-message");
+
+registrationForm.addEventListener("submit", async function (event) {
+  event.preventDefault();
+
+  const fullName =
+    document.getElementById("register-full-name").value.trim();
+  const email =
+    document.getElementById("register-email").value.trim();
+  const password =
+    document.getElementById("register-password").value;
+  const confirmPassword =
+    document.getElementById("register-confirm-password").value;
+
+  if (password !== confirmPassword) {
+    registrationMessage.textContent = "Passwords do not match.";
+    return;
+  }
+
+  if (!window.firebaseAuth) {
+    registrationMessage.textContent =
+      "Firebase is not ready. Refresh and try again.";
+    return;
+  }
+
+  registrationMessage.textContent = "Creating your account...";
+
+  try {
+    const result =
+      await window.firebaseAuth.createUserWithEmailAndPassword(
+        window.firebaseAuth.auth,
+        email,
+        password
+      );
+
+    const { updateProfile } = await import(
+      "https://www.gstatic.com/firebasejs/13.1.0/firebase-auth.js"
+    );
+
+    await updateProfile(result.user, { displayName: fullName });
+
+    registrationMessage.textContent =
+      "Account created successfully! Welcome, " + fullName + ".";
+
+    registrationForm.reset();
+    registrationScreen.style.display = "none";
+    loginScreen.style.display = "none";
+
+    if (typeof profileEmail !== "undefined") {
+      profileEmail.textContent = result.user.email || email;
+    }
+  } catch (error) {
+    if (error.code === "auth/email-already-in-use") {
+      registrationMessage.textContent =
+        "This email already has an account. Please sign in.";
+    } else if (error.code === "auth/weak-password") {
+      registrationMessage.textContent =
+        "Choose a stronger password with at least 6 characters.";
+    } else if (error.code === "auth/invalid-email") {
+      registrationMessage.textContent =
+        "Please enter a valid email address.";
+    } else if (error.code === "auth/network-request-failed") {
+      registrationMessage.textContent =
+        "Check your internet connection and try again.";
+    } else {
+      registrationMessage.textContent =
+        "Registration error: " + error.message;
+    }
+  }
+});
+  
 // Always show the sign-in screen when the app opens
 loginScreen.style.display = "flex";
 // Sign out and return to the sign-in screen
