@@ -35,4 +35,12 @@ export {
   GoogleAuthProvider,
   signInWithPopup
 };
-
+window.firebaseAuth = {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
+};
