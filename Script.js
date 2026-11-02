@@ -1,5 +1,5 @@
 
-const songs = [
+let songs = [
   {
     file: "1 spirit & Theophilus Sunday chant song.mp3",
     title: "Spirit Chant",
