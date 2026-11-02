@@ -488,7 +488,6 @@ const loginForm = document.getElementById("login-form");
 const loginScreen = document.getElementById("login-screen");
 const loginMessage = document.getElementById("login-message");
 const loginEmail = document.getElementById("login-email");
-const loginPassword = document.getElementById("login-password");
 
 loginForm.addEventListener("submit", async function (event) {
   event.preventDefault();
