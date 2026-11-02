@@ -810,3 +810,46 @@ cancelSleepTimer.addEventListener("click", function () {
   cancelSleepTimerNow();
 });
 const playbackMode = document.getElementById("playback-mode");
+
+// Add music files selected from phone storage
+const addLocalMusicButton =
+  document.getElementById("add-local-music");
+const localMusicFiles =
+  document.getElementById("local-music-files");
+const localMusicMessage =
+  document.getElementById("local-music-message");
+
+addLocalMusicButton.addEventListener("click", function () {
+  localMusicFiles.click();
+});
+
+localMusicFiles.addEventListener("change", function () {
+  const files = Array.from(localMusicFiles.files || [])
+    .filter(file => file.type.startsWith("audio/"));
+
+  if (files.length === 0) {
+    localMusicMessage.textContent =
+      "No audio files selected. Please try again.";
+    return;
+  }
+
+  const firstNewIndex = songs.length;
+
+  files.forEach(function (file) {
+    songs.push({
+      file: URL.createObjectURL(file),
+      title: file.name.replace(/\.[^/.]+$/, ""),
+      artist: "From your phone"
+    });
+  });
+
+  renderSongList();
+
+  localMusicMessage.textContent =
+    files.length + (files.length === 1
+      ? " song added."
+      : " songs added.");
+
+  playSong(firstNewIndex);
+  localMusicFiles.value = "";
+});
